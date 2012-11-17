@@ -32,7 +32,7 @@ public class ShamanServer extends AbstractHandler
 
 				ResourceHandler resource_handler = new ResourceHandler();
 				resource_handler.setDirectoriesListed(true);
-				resource_handler.setWelcomeFiles(new String[]{ "index.jsp" });
+				resource_handler.setWelcomeFiles(new String[]{ "index.html" });
 
 				resource_handler.setResourceBase("src/main/webapp");
 

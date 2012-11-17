@@ -40,3 +40,4 @@ Thumbs.db
 # Specila This Application files #
 ##################################
 target/
+src/main/webapp/.idea
