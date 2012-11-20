@@ -41,3 +41,4 @@ Thumbs.db
 ##################################
 target/
 src/main/webapp/.idea
+.idea
