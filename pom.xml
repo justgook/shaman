@@ -8,23 +8,68 @@
   <name>shaman-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>justgook</id>
+      <name>Roman Potashow</name>
+      <email>justgook@gmail.com</email>
+      <url>http://roman.z0.lv</url>
+      <organization>Zone Zero</organization>
+      <organizationUrl>http://z0.lv</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>+2</timezone>
+      <properties>
+        <picUrl>http://en.gravatar.com/avatar/62b1a7d713dc5234e089061b5c72d780</picUrl>
+      </properties>
+    </developer>
+  </developers>
+
   <properties>
     <jettyVersion>9.0.0.M0</jettyVersion>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>jgit-repository</id>
+      <url>http://download.eclipse.org/jgit/maven</url>
+    </repository>
+  </repositories>
+
   <dependencies>
+
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit.http.server</artifactId>
+      <version>2.1.0.201209190230-r</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-server</artifactId>
       <version>${jettyVersion}</version>
     </dependency>
   </dependencies>
+
   <build>
     <finalName>shaman-web</finalName>
     <plugins>
