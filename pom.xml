@@ -1,12 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+  xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>lv.z0.shaman</groupId>
   <artifactId>shaman-web</artifactId>
   <packaging>war</packaging>
   <version>0.1</version>
   <name>shaman-web Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <url>http://z0.lv</url>
 
 
   <licenses>
@@ -39,6 +42,9 @@
 
   <properties>
     <jettyVersion>9.0.0.M0</jettyVersion>
+    <junitVersion>4.10</junitVersion>
+    <!-- <jgitVersion>2.1.0.201209190230-r</jgitVersion> -->
+    <exec-maven-pluginVersion>1.2.1</exec-maven-pluginVersion>
   </properties>
 
   <repositories>
@@ -49,17 +55,25 @@
   </repositories>
 
   <dependencies>
-
-    <dependency>
+    <!-- TODO imploment in backend -->
+<!--     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit.http.server</artifactId>
-      <version>2.1.0.201209190230-r</version>
-    </dependency>
+      <version>${jgitVersion}</version>
+    </dependency> -->
+
+<!-- TODO imploment in backend json  -->
+<!-- <dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-core</artifactId>
+  <version>2.1.1</version>
+</dependency> -->
+
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.1</version>
+      <version>${junitVersion}</version>
       <scope>test</scope>
     </dependency>
 
@@ -68,15 +82,45 @@
       <artifactId>jetty-server</artifactId>
       <version>${jettyVersion}</version>
     </dependency>
+
   </dependencies>
 
   <build>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.0</version>
+          <configuration>
+            <!-- put your configurations here -->
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <finalName>shaman-web</finalName>
     <plugins>
       <plugin>
+        <groupId>com.github.searls</groupId>
+        <artifactId>jasmine-maven-plugin</artifactId>
+        <version>1.2.0.0</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>${exec-maven-pluginVersion}</version>
         <executions>
           <execution><goals><goal>java</goal></goals></execution>
         </executions>
@@ -84,6 +128,38 @@
           <mainClass>lv.z0.ShamanServer</mainClass>
         </configuration>
       </plugin>
+
+
+    <!-- ====================================================================== -->
+    <!-- CoffeeScript Compilier                                                 -->
+    <!-- https://github.com/iron9light/coffeescript-maven-plugin                -->
+    <!-- ====================================================================== -->
+<!--     <plugin>
+      <groupId>com.github.iron9light</groupId>
+      <artifactId>coffeescript-maven-plugin</artifactId>
+      <version>1.1.2</version>
+      <configuration>
+        <srcDir>${basedir}/src/main/webapp</srcDir>
+        <outputDir>${basedir}/src/main/webapp</outputDir>
+        <bare>false</bare>
+        <modifiedOnly>false</modifiedOnly>
+        <allowedDelete>true</allowedDelete>
+        <compilerUrl></compilerUrl>
+      </configuration>
+      <executions>
+        <execution>
+          <id>coffeescript</id>
+          <phase>generate-resources</phase>
+          <goals>
+            <goal>compile</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin> -->
+
+
+
+
     </plugins>
   </build>
 </project>
