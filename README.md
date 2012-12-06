@@ -15,3 +15,11 @@ http://webdesignledger.com/freebies/the-best-icon-sets-for-minimal-style-web-des
 http://picol.org/icon_library.php
 
 TODO create combination of LESSCSS + java to generate icon sets based on some mixins - and return sprite (or base64 builded class list) of icons, with only necessary icons
+
+
+TODO draw diogram of program - http://www.gliffy.com/ (or somethink simular)
+need to find some UML renders;
+read about http://ru.wikipedia.org/wiki/IDEF
+base stancils - http://www.graffletopia.com/
+http://www.yworks.com/en/products_yed_about.
+http://yuml.me/ live image render!
