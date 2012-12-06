@@ -20,6 +20,7 @@ public class ShamnHandler extends AbstractHandler
 										   HttpServletResponse response)
 				throws IOException, ServletException
 		{
+				System.out.println(baseRequest);
 				response.setContentType("text/html;charset=utf-8");
 				response.setStatus(HttpServletResponse.SC_OK);
 				baseRequest.setHandled(true);

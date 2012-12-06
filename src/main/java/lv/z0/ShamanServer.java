@@ -11,21 +11,10 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
+// import org.eclipse.jetty.server.handler.ContextHandler;
 
 public class ShamanServer
 {
-		// public void handle(String target,
-		// 								   Request baseRequest,
-		// 								   HttpServletRequest request,
-		// 								   HttpServletResponse response)
-		// 		throws IOException, ServletException
-		// {
-		// 		response.setContentType("text/html;charset=utf-8");
-		// 		response.setStatus(HttpServletResponse.SC_OK);
-		// 		baseRequest.setHandled(true);
-		// 		response.getWriter().println("<h1>Hello World From Default HelloWorld servlet</h1>");
-		// }
-
 		public static void main(String[] args) throws Exception
 		{
 				Server server = new Server(8080);
@@ -36,6 +25,17 @@ public class ShamanServer
 
 				resource_handler.setResourceBase("src/main/webapp");
 
+				//http://wiki.eclipse.org/Jetty/Tutorial/Embedding_Jetty#Setting_Contexts
+				// ContextHandler context = new ContextHandler();
+				// context.setContextPath("/hello");
+				// context.setResourceBase(".");
+				// context.setClassLoader(Thread.currentThread().getContextClassLoader());
+				// server.setHandler(context);
+				
+				// HandlerContext context = server.addContext("/context/*");
+				// context.setResourceBase("./docroot/");
+//TODO Check it for javascript / data forwarding to special handler
+// http://download.eclipse.org/jetty/stable-9/apidocs/org/eclipse/jetty/server/handler/ContextHandlerCollection.html
 				HandlerList handlers = new HandlerList();
 				handlers.setHandlers(
 					new Handler[] {
