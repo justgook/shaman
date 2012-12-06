@@ -13,7 +13,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 // import org.eclipse.jetty.server.handler.ContextHandler;
 
-public class ShamanServer
+public class ShamanWebServer
 {
 		public static void main(String[] args) throws Exception
 		{
@@ -22,7 +22,6 @@ public class ShamanServer
 				ResourceHandler resource_handler = new ResourceHandler();
 				resource_handler.setDirectoriesListed(true);
 				resource_handler.setWelcomeFiles(new String[]{ "index.html" });
-
 				resource_handler.setResourceBase("src/main/webapp");
 
 				//http://wiki.eclipse.org/Jetty/Tutorial/Embedding_Jetty#Setting_Contexts
@@ -40,6 +39,7 @@ public class ShamanServer
 				handlers.setHandlers(
 					new Handler[] {
 						resource_handler,
+						new ShamnJavascriptHandler(),
 						new ShamnHandler()
 					});
 				server.setHandler(handlers);
