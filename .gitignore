@@ -43,3 +43,4 @@ Thumbs.db
 target/
 src/main/webapp/.idea
 .idea
+.shaman-web.iml

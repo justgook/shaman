@@ -24,3 +24,35 @@ http://www.yworks.com/en/products_yed_about.
 http://yuml.me/ live image render!
 http://plantuml.sourceforge.net/
 http://www.codeuml.com/
+
+
+diagram:
+
+======================================================================================
+[Client] .> [WebServer.SocketAPI]
+[Client] .> [WebServer.HTTP API]
+[WebServer.HTTP API] ..> [Client]
+[WebServer.SocketAPI] ..> [Client]
+
+WebServer.SocketAPI->API
+[WebServer.HTTP API]->API
+[WebServer.StaticFiles]->Client
+
+package "API" {
+    [CookieSession]
+    [WebSocketSession]
+}
+
+package "Core" {
+    [User]
+    [Privileges]
+    [i18n]
+    [ModulePrivileges]
+}
+
+Git -> ModulePrivileges
+package "Git" {
+    [repositories]
+    [Commits]
+}
+======================================================================================
