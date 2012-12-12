@@ -1,0 +1,50 @@
+@startuml
+
+    package "Client"{
+        [CoffeeScript]
+        [LessCss]
+        [lib.js]
+    }
+
+
+    package "Development" {
+        [JavaScript]
+        [CSS]
+
+    }
+
+    [webServer]
+
+    package "Compilation" {
+        [main.js]->[webServer]
+        [main.css]->[webServer]
+        [jettyServer]->[webServer]
+        [staticFiles]->[webServer]
+    }
+    [lib.js]  ->  [main.js]
+    [CoffeeScript] ->  [main.js]
+    [LessCss] ->  [main.css]
+    [CoffeeScript] -> watch
+     watch-> [JavaScript]
+    [LessCss] -> watch
+     watch-> [CSS]
+
+
+
+    note top of [staticFiles]
+        images
+        properties
+        configurations
+    end note
+
+    note bottom of [main.js]
+        all files *.coffee
+        become one big file
+    end note
+
+    note bottom of [main.css]
+        all files *.less
+        become one big file
+    end note
+
+@enduml

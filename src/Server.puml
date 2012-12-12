@@ -1,0 +1,35 @@
+@startuml
+
+
+
+package "Api Bridge" {
+()HTTP
+()WebSocket
+}
+
+[Client] -> WebSocket
+[Client] -> HTTP :ajax
+
+package "Session" {
+    [authorization] - Router
+    ()Router - [ActivityLogger]
+    Router -- [dataExchange]
+    Router -- [EventsPusher]
+
+}
+
+WebSocket - Router
+HTTP - Router
+
+package "Core" {
+    [ModulesProvider]
+    hghjgh - Users
+}
+
+package "Users" {
+    [data]
+    [privileges]
+}
+dataExchange -> hghjgh  
+
+@enduml
