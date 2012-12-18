@@ -1,16 +1,23 @@
 @startuml
 
 
+package "JavaScript" {
+    [wss.js]
+    [http.js]
+}
 
 package "Api Bridge" {
 ()HTTP
 ()WebSocket
 }
 
-[Client] -> WebSocket
-[Client] -> HTTP :ajax
+:Client: -> [wss.js]
+:Client: -> [http.js]
 
-package "Session" {
+[wss.js] -> WebSocket:wss
+[http.js] -> HTTP :ajax
+
+package "Core" {
     [authorization] - Router
     ()Router - [ActivityLogger]
     Router -- [dataExchange]
@@ -21,15 +28,43 @@ package "Session" {
 WebSocket - Router
 HTTP - Router
 
-package "Core" {
+package "Modules" {
     [ModulesProvider]
     hghjgh - Users
 }
 
 package "Users" {
-    [data]
-    [privileges]
+     [data]
+     [privileges]
+ }
+
+i18n -> dataExchange
+package "i18n" {
+
 }
-dataExchange -> hghjgh  
+
+Git ->  ModulesProvider
+
+package "Git" {
+    [Repositories]
+    [Commits]
+    [Branches]
+}
+
+dataExchange -> hghjgh
+
+    note top of wss.js
+        <script src="//server/wss.js">
+        script with api for
+        web socket access
+        to the data, session
+    end note
+
+    note top of http.js
+        <script src="//server/http.js">
+        script with api for http access
+        to the data, session
+    end note
+
 
 @enduml
