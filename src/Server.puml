@@ -1,14 +1,15 @@
 @startuml
 
+node "PublicServer" {
+    package "JavaScript" {
+        [wss.js]
+        [http.js]
+    }
 
-package "JavaScript" {
-    [wss.js]
-    [http.js]
-}
-
-package "Api Bridge" {
-()HTTP
-()WebSocket
+    package "Api Bridge" {
+        ()HTTP
+        ()WebSocket
+    }
 }
 
 :Client: -> [wss.js]
@@ -17,12 +18,25 @@ package "Api Bridge" {
 [wss.js] -> WebSocket:wss
 [http.js] -> HTTP :ajax
 
+
+
 package "Core" {
     [authorization] - Router
     ()Router - [ActivityLogger]
-    Router -- [dataExchange]
-    Router -- [EventsPusher]
+    Router ----> [dataExchange]
+    [dataExchange] -->  ()Translation
+    ()Translation --> Router
+    Router -- [EventPusher]
+    ()Translation
 
+}
+
+
+i18n - Translation
+
+package "i18n" {
+   [package]
+   [CoreTranslation]
 }
 
 WebSocket - Router
@@ -30,18 +44,16 @@ HTTP - Router
 
 package "Modules" {
     [ModulesProvider]
-    hghjgh - Users
+    Request - Users
 }
 
 package "Users" {
      [data]
      [privileges]
+
  }
 
-i18n -> dataExchange
-package "i18n" {
 
-}
 
 Git ->  ModulesProvider
 
@@ -50,8 +62,17 @@ package "Git" {
     [Commits]
     [Branches]
 }
+Issues ->  ModulesProvider
+package "Issues" {
+    [Issue]
+    [Milestone]
+    ()Filter
+    ()Label
+}
 
-dataExchange -> hghjgh
+dataExchange -> Request
+Request -> ModulesProvider
+ModulesProvider -> dataExchange
 
     note top of wss.js
         <script src="//server/wss.js">
