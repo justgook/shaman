@@ -134,6 +134,16 @@
         </configuration>
       </plugin>
 
+    <!-- ====================================================================== -->
+    <!-- Closure Compiler                                                       -->
+    <!-- Closure Compiler is a JavaScript optimizing compiler                   -->
+    <!-- https://code.google.com/p/closure-compiler/                            -->
+    <!-- ====================================================================== -->
+    <!--<dependency>-->
+        <!--<groupId>com.google.javascript</groupId>-->
+        <!--<artifactId>closure-compiler</artifactId>-->
+        <!--<version>r2388</version>-->
+    <!--</dependency>-->
 
     <!-- ====================================================================== -->
     <!-- CoffeeScript Compilier                                                 -->

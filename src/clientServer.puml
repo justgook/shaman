@@ -4,26 +4,40 @@
         [CoffeeScript]
         [LessCss]
         [lib.js]
+        [images]
     }
 
 
     package "Development" {
         [JavaScript]
         [CSS]
-
     }
 
-    [webServer]
-
-    package "Compilation" {
-        [main.js]->[webServer]
-        [main.css]->[webServer]
-        [jettyServer]->[webServer]
-        [staticFiles]->[webServer]
+    package "compilation" {
+        [cssEmbed]
+        [CoffeScriptCompiler]
+        [LessCssCompiler]
+        [spriteCreator]
+        [ClosureCompiler]
     }
-    [lib.js]  ->  [main.js]
-    [CoffeeScript] ->  [main.js]
-    [LessCss] ->  [main.css]
+
+    node "deployServer" {
+        [main.js]
+        [main.css]
+        [jettyServer]
+        [staticFiles]
+    }
+
+    [CoffeeScript] -> [CoffeScriptCompiler]
+    [CoffeScriptCompiler] -> [ClosureCompiler]
+    [ClosureCompiler] -> [main.js]
+    [LessCss] -> [LessCssCompiler]
+    [LessCssCompiler] -> [cssEmbed]
+    [images] -> [spriteCreator]
+    [spriteCreator] -> [staticFiles]
+    [cssEmbed] -> [main.css]
+    [lib.js] -> [ClosureCompiler]
+
     [CoffeeScript] -> watch
      watch-> [JavaScript]
     [LessCss] -> watch
@@ -31,7 +45,7 @@
 
 
 
-    note top of [staticFiles]
+    note bottom of [staticFiles]
         images
         properties
         configurations
