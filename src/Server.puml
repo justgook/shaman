@@ -70,6 +70,11 @@ package "Issues" {
     ()Label
 }
 
+Bash ->  ModulesProvider
+package "Bash" {
+    [Executer]
+}
+
 dataExchange -> Request
 Request -> ModulesProvider
 ModulesProvider -> dataExchange

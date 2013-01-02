@@ -38,3 +38,9 @@ http://www.codeuml.com/
 
 TODO Javascript Libs  "A JavaScript library for cross-browser XML, XPath, and XSLT support."
  http://www.nczonline.net/downloads/
+
+
+ TODO json formater, in some smaller format
+ http://msgpack.org/
+ http://bsonspec.org/
+ UBJSON - http://habrahabr.ru/post/130112/
