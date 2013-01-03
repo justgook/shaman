@@ -18,6 +18,6 @@ public class JavascriptHandler extends AbstractHandler
 				response.setContentType("text/html;charset=utf-8");
 				response.setStatus(HttpServletResponse.SC_OK);
 				baseRequest.setHandled(true); //if false - skip this handler
-				response.getWriter().println("<h1>Hello Im ShamnJavascriptHandler</h1>");
+				response.getWriter().println("<h1>Hello Im ShamanJavascriptHandler</h1>");
 		}
 }
