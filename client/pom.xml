@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>z1.shaman</groupId>
+        <groupId>z0.shaman</groupId>
         <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -41,6 +41,19 @@
                           <value>8181</value>
                       </systemProperty>
                   </systemProperties>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>com.github.iron9light</groupId>
+              <artifactId>coffeescript-maven-plugin</artifactId>
+              <version>1.1.2</version>
+              <configuration>
+                  <srcDir>${basedir}/src/main/javascript</srcDir>
+                  <outputDir>${basedir}/src/main/webapp/js</outputDir>
+                  <bare>false</bare>
+                  <modifiedOnly>false</modifiedOnly>
+                  <allowedDelete>true</allowedDelete>
+                  <compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>
               </configuration>
           </plugin>
       </plugins>
