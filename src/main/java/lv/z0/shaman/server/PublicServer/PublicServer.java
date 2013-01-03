@@ -5,7 +5,7 @@ public class PublicServer {
 
     void startWebServer () throws Exception {
         //TODO move to properties ServerPort
-        Server server = new Server(8080);
+        Server server = new Server(8181);
         server.start();
         server.join();
     }

@@ -125,11 +125,16 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${exec-maven-pluginVersion}</version>
         <executions>
-          <execution><goals><goal>java</goal></goals></execution>
-        </executions>
-        <configuration>
-          <mainClass>lv.z0.shaman.client.WebServer</mainClass>
-        </configuration>
+            <execution>
+              <goals>
+                  <goal>java</goal>
+              </goals>
+              <configuration>
+                <mainClass>lv.z0.shaman.client.WebServer</mainClass>
+              </configuration>
+            </execution>
+         </executions>
+
       </plugin>
 
     <!-- ====================================================================== -->

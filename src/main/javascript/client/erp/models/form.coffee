@@ -1,0 +1,1 @@
+class Form extends Backbone.Model
