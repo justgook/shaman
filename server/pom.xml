@@ -37,7 +37,7 @@
             <version>1.1.2</version>
             <configuration>
                 <srcDir>${basedir}/src/main/javascript</srcDir>
-                <outputDir>${basedir}/src/main/webapp/js</outputDir>
+                <outputDir>${basedir}/target/javascript</outputDir>
                 <bare>false</bare>
                 <modifiedOnly>false</modifiedOnly>
                 <allowedDelete>true</allowedDelete>
