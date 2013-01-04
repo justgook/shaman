@@ -4,32 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <servlet-name>static</servlet-name>
-        <servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
-        <init-param>
-            <param-name>resourceBase</param-name>
-            <param-value>/static</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cacheControl</param-name>
-            <param-value>max-age=1296000</param-value>
-        </init-param>
-        <init-param>
-            <param-name>dirAllowed</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>pathInfoOnly</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>contextPath</param-name>
-            <param-value>/static_assets</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>static</servlet-name>
-        <url-pattern>/static_assets/*</url-pattern>
-    </servlet-mapping>
+    <listener>
+        <listener-class>lv.z0.shaman.Websocket</listener-class>
+    </listener>
 </web-app>
