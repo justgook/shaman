@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <jettyVersion>9.0.0.M2</jettyVersion>
+        <jettyVersion>9.0.0.M4</jettyVersion>
     </properties>
 
     <modules>
