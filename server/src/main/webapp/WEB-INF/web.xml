@@ -4,7 +4,13 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <listener>
-        <listener-class>lv.z0.shaman.Websocket</listener-class>
-    </listener>
+	<servlet>
+		<servlet-name>WebSocketChat</servlet-name>
+		<servlet-class>lv.z0.shaman.MyEchoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebSocketChat</servlet-name>
+		<url-pattern>/WebSocketChat/*</url-pattern>
+	</servlet-mapping>
+
 </web-app>

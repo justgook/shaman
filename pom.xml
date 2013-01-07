@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <jettyVersion>9.0.0.M4</jettyVersion>
+        <jettyVersion>9.0.0.M2</jettyVersion>
     </properties>
 
     <modules>
@@ -24,9 +24,14 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.0</version>
                     <configuration>
-                        <!-- put your configurations here -->
+                        <fork>true</fork>
+                        <meminitial>128m</meminitial>
+                        <maxmem>512m</maxmem>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <!--<minmemory>256m</minmemory>-->
+                        <!--<maxmemory>2048m</maxmemory>-->
                     </configuration>
                 </plugin>
             </plugins>
