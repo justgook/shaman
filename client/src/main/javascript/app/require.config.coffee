@@ -8,7 +8,7 @@ jam =
         {
             name: "backbone.layoutmanager"
             location: "../../vendor/jam/backbone.layoutmanager"
-            main: "backbone.layoutm anager.js"
+            main: "backbone.layoutmanager.js"
         },
         {
             name: "jquery"
@@ -26,9 +26,9 @@ jam =
             main: "underscore.js"
         },
         {
-          name: "use"
-          location: "/dev/plugins"
-          main: "use.js"
+          name: "namespace"
+          location: "/dev"
+          main: "namespace.js"
         },
     ]
     version: "0.2.11"

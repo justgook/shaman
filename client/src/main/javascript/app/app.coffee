@@ -19,7 +19,7 @@ define [
     Backbone.LayoutManager.configure
       # Allow LayoutManager to augment Backbone.View.prototype.
       manage: true
-      prefix: "app/templates/"
+      prefix: "themes/metro/templates/"
       fetch: (path) ->
         # Concatenate the file extension.
         path = path + ".html"
@@ -55,7 +55,7 @@ define [
           @layout.template = options.template
         else
           # Create a new Layout with options.
-          this.layout = new Backbone.Layout _.extend({el: "main"}, options)
+          @layout = new Backbone.Layout _.extend({el: "#main"}, options)
         # Cache the refererence.
-        this.layout
+        @layout
     , Backbone.Events
