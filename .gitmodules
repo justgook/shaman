@@ -1,0 +1,6 @@
+[submodule "src/main/resources/backbone-boilerplate"]
+	path = src/main/resources/backbone-boilerplate
+	url = git://github.com/tbranyen/backbone-boilerplate.git
+[submodule "client/src/main/webapp/themes/metro/Metro-UI-CSS"]
+	path = client/src/main/webapp/themes/metro/Metro-UI-CSS
+	url = git://github.com/olton/Metro-UI-CSS.git

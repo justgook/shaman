@@ -9,22 +9,64 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript">
 	var ws;
-
 	$(document).ready(
 			function() {
-				ws = new WebSocket("ws://localhost:8080/WebSocketChat/anything");
+                function microtime(get_as_float) {
+                    // Returns either a string or a float containing the current time in seconds and microseconds
+                    //
+                    // version: 812.316
+                    // discuss at: http://phpjs.org/functions/microtime
+                    // +   original by: Paulo Ricardo F. Santos
+                    // *     example 1: timeStamp = microtime(true);
+                    // *     results 1: timeStamp > 1000000000 && timeStamp < 2000000000
+                    var now = new Date().getTime() / 1000;
+                    var s = parseInt(now);
+
+                    return (get_as_float) ? now : (Math.round((now - s) * 1000) / 1000) + ' ' + s;
+                }
+
+
+                ws = new WebSocket("ws://localhost:8080/WebSocketChat/anything");
+                var startAt = microtime(true);
+                //TODO need to test this, what it do
+//                ws.extensions = "x-webkit-deflate-frame";
+//				WebSocket.CONNECTING = 0;
+					/**
+					@type Number
+					@const
+					*/
+//					WebSocket.OPEN = 1;
+					/**
+					@type Number
+					@const
+					*/
+//					WebSocket.CLOSING = 2;
+					/**
+					@type Number
+					@const
+					*/
+//					WebSocket.CLOSED = 3;
+                // readyState
 				ws.onopen = function(event) {
 
+                    console.log("connection opened:" + startAt);
 				}
-				ws.onmessage = function(event) {
-					var $textarea = $('#messages');
-					$textarea.val($textarea.val() + event.data + "\n");
-					$textarea.animate({
-						scrollTop : $textarea.height()
-					}, 1000);
+                ws.onmessage = function(event) {
+                    console.log(event);
+                    var $textarea = $('#messages');
+                    $textarea.val($textarea.val() + event.data + "\n");
+                    $textarea.animate({
+                        scrollTop : $textarea.height()
+                    }, 1000);
+
+                }
+                ws.onclose = function(event) {
+                    console.log("connection closed (session time: "+ (microtime(true) - startAt) + ")" );
+                    console.log(event);
 				}
-				ws.onclose = function(event) {
-					
+				ws.onerror = function(error){
+				   console.log('Error detected: ');
+                   console.log(error)
 				}
 
 			});
@@ -33,6 +75,7 @@
 		var message = $('#username').val() + ":" + $('#message').val();
 		ws.send(message);
 		$('#message').val('');
+        return false;
 	}
 </script>
 </head>
@@ -49,7 +92,7 @@
 			<textarea id="messages" rows="16" cols="48" readonly="readonly"></textarea>
 		</div>
 
-		<form name="message" action="">
+		<form name="message" action="" onsubmit="return sendMessage();">
 			<input name="usermsg" type="text" id="message" size="63" /> <input
 				type="button" name="submitmsg" value="Send..."
 				onclick="sendMessage();" />

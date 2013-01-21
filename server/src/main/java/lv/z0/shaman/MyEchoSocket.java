@@ -11,6 +11,7 @@ public class MyEchoSocket extends WebSocketAdapter
     @Override
     public void onWebSocketText(String message)
     {
+
         if (isNotConnected())
         {
             return;
@@ -19,6 +20,7 @@ public class MyEchoSocket extends WebSocketAdapter
         try
         {
             // echo the data back
+            System.out.printf("Got msg: %s%n", message);
             getBlockingConnection().write(message);
         }
         catch (IOException e)

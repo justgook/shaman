@@ -11,6 +11,7 @@ public class MyEchoServlet extends WebSocketServlet
     @Override
     public void configure(WebSocketServletFactory factory)
     {
+
         factory.register(MyEchoSocket.class);
     }
 }

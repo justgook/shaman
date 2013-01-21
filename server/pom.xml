@@ -11,7 +11,7 @@
 
   <artifactId>server</artifactId>
   <packaging>war</packaging>
-  <name>server Maven Webapp</name>
+  <name>Shaman Server</name>
   <url>http://maven.apache.org</url>
 
 <properties>
@@ -64,6 +64,14 @@
       <artifactId>websocket-api</artifactId>
       <version>${jettyVersion}</version>
     </dependency>
+      <!--DELETE ME AFTER TEST-->
+    <dependency>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>websocket-client</artifactId>
+      <version>${jettyVersion}</version>
+    </dependency>
+
+
   </dependencies>
 
   <build>

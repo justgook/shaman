@@ -1,0 +1,64 @@
+@startuml
+
+    package "Client"{
+        [CoffeeScript]
+        [LessCss]
+        [lib.js]
+        [images]
+    }
+
+
+    package "Development" {
+        [JavaScript]
+        [CSS]
+    }
+
+    package "compilation" {
+        [cssEmbed]
+        [CoffeScriptCompiler]
+        [LessCssCompiler]
+        [spriteCreator]
+        [ClosureCompiler]
+    }
+
+    node "deployServer" {
+        [main.js]
+        [main.css]
+        [jettyServer]
+        [staticFiles]
+    }
+
+    [CoffeeScript] -> [CoffeScriptCompiler]
+    [CoffeScriptCompiler] -> [ClosureCompiler]
+    [ClosureCompiler] -> [main.js]
+    [LessCss] -> [LessCssCompiler]
+    [LessCssCompiler] -> [cssEmbed]
+    [images] -> [spriteCreator]
+    [spriteCreator] -> [staticFiles]
+    [cssEmbed] -> [main.css]
+    [lib.js] -> [ClosureCompiler]
+
+    [CoffeeScript] -> watch
+     watch-> [JavaScript]
+    [LessCss] -> watch
+     watch-> [CSS]
+
+
+
+    note bottom of [staticFiles]
+        images
+        properties
+        configurations
+    end note
+
+    note bottom of [main.js]
+        all files *.coffee
+        become one big file
+    end note
+
+    note bottom of [main.css]
+        all files *.less
+        become one big file
+    end note
+
+@enduml
