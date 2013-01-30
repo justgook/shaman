@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>z0.shaman</groupId>
@@ -9,101 +9,147 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-  <artifactId>client</artifactId>
-  <packaging>war</packaging>
-  <name>Shaman Client</name>
-  <url>http://client.shaman.z0.lv</url>
+    <artifactId>client</artifactId>
+    <packaging>war</packaging>
+    <name>Shaman Client</name>
+    <url>http://client.shaman.z0.lv</url>
 
     <!--TODO make it global accessible, in build / test states (and in JSP file)-->
-  <properties>
-    <theme>metro</theme>
-  </properties>
+    <properties>
+        <theme>metro</theme>
+    </properties>
+    <!-- ====================================================================== -->
+    <!-- jade4j - a jade implementation written in Java                         -->
+    <!-- https://github.com/neuland/jade4j                                      -->
+    <!-- ====================================================================== -->
+    <repositories>
+        <repository>
+            <id>jade4j-releases</id>
+            <url>https://raw.github.com/neuland/jade4j/master/releases</url>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-      <!--Scalate template engine to build html-->
-      <dependency>
-          <groupId>org.fusesource.scalate</groupId>
-          <artifactId>scalate-core</artifactId>
-          <version>1.5.3-scala_2.8.2</version>
-      </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- ====================================================================== -->
+        <!-- jade4j - a jade implementation written in Java                         -->
+        <!-- https://github.com/neuland/jade4j                                      -->
+        <!-- ====================================================================== -->
+        <dependency>
+            <groupId>de.neuland</groupId>
+            <artifactId>jade4j</artifactId>
+            <version>0.3.8</version>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <finalName>client</finalName>
-      <plugins>
-          <!--plugin to build Handlebars templates to javascript-->
-          <plugin>
-              <groupId>net.unit8.maven.plugins</groupId>
-              <artifactId>handlebars-maven-plugin</artifactId>
-              <version>0.2.0</version>
-              <configuration>
-                <sourceDirectory>${basedir}/src/webapp/themes/${theme}</sourceDirectory>
-                <outputDirectory>${basedir}/target/javascript/themes/metro</outputDirectory>
-              </configuration>
-          </plugin>
+    <build>
+        <finalName>client</finalName>
+        <plugins>
 
-          <!--server to run dev server-->
-          <plugin>
-              <groupId>org.eclipse.jetty</groupId>
-              <artifactId>jetty-maven-plugin</artifactId>
-              <version>${jettyVersion}</version>
-              <configuration>
-                  <systemProperties>
-                      <systemProperty>
-                          <name>log.level</name>
-                          <value>INFO</value>
-                      </systemProperty>
-                      <systemProperty>
-                          <name>jetty.port</name>
-                          <value>8181</value>
-                      </systemProperty>
-                  </systemProperties>
-                  <contextHandlers>
-                      <!--special path for backbone-boilerplate vendor path-->
-                      <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                          <contextPath>/vendor</contextPath>
-                          <resourceBase>${project.parent.basedir}/src/main/resources/backbone-boilerplate/vendor</resourceBase>
-                      </contextHandler>
-                      <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                          <contextPath>/js/lib</contextPath>
-                          <resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>
-                      </contextHandler>
-                      <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                          <contextPath>/js</contextPath>
-                          <resourceBase>${basedir}/target/javascript</resourceBase>
-                      </contextHandler>
-                  </contextHandlers>
-              </configuration>
-          </plugin>
-          <!--coffeeScript compilation to JS-->
-          <plugin>
-              <groupId>com.github.iron9light</groupId>
-              <artifactId>coffeescript-maven-plugin</artifactId>
-              <version>1.1.2</version>
-              <configuration>
-                  <srcDir>${basedir}/src/main/javascript</srcDir>
-                  <outputDir>${basedir}/target/javascript</outputDir>
-                  <bare>false</bare>
-                  <modifiedOnly>false</modifiedOnly>
-                  <allowedDelete>true</allowedDelete>
-                  <compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>
-              </configuration>
-              <executions>
-                  <execution>
-                      <id>coffeescript</id>
-                      <phase>generate-resources</phase>
-                      <goals>
-                          <goal>compile</goal>
-                      </goals>
-                  </execution>
-              </executions>
-          </plugin>
-      </plugins>
-  </build>
+            <!--server to run dev server-->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jettyVersion}</version>
+                <configuration>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>log.level</name>
+                            <value>INFO</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>jetty.port</name>
+                            <value>8181</value>
+                        </systemProperty>
+                    </systemProperties>
+                    <contextHandlers>
+                        <!--special path for backbone-boilerplate vendor path-->
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/vendor</contextPath>
+                            <resourceBase>${project.parent.basedir}/src/main/resources/backbone-boilerplate/vendor
+                            </resourceBase>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/js/lib</contextPath>
+                            <resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/js</contextPath>
+                            <resourceBase>${basedir}/target/javascript</resourceBase>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/vendor/mustache</contextPath>
+                            <resourceBase>${project.parent.basedir}/src/main/resources/mustache.js</resourceBase>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/${theme}/css</contextPath>
+                            <resourceBase>${basedir}/target/css/${theme}</resourceBase>
+                        </contextHandler>
+                    </contextHandlers>
+                </configuration>
+            </plugin>
+            <!-- ====================================================================== -->
+            <!-- CoffeeScript Compiler                                                  -->
+            <!-- https://github.com/iron9light/coffeescript-maven-plugin                -->
+            <!-- ====================================================================== -->
+            <plugin>
+                <groupId>com.github.iron9light</groupId>
+                <artifactId>coffeescript-maven-plugin</artifactId>
+                <version>1.1.2</version>
+                <configuration>
+                    <srcDir>${basedir}/src/main/javascript</srcDir>
+                    <outputDir>${basedir}/target/javascript</outputDir>
+                    <bare>false</bare>
+                    <modifiedOnly>false</modifiedOnly>
+                    <allowedDelete>true</allowedDelete>
+                    <compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>coffeescript</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- ====================================================================== -->
+            <!-- LESSCSS Compiler                                                       -->
+            <!-- https://github.com/marceloverdijk/lesscss-maven-plugin                 -->
+            <!-- ====================================================================== -->
+            <plugin>
+                <groupId>org.lesscss</groupId>
+                <artifactId>lesscss-maven-plugin</artifactId>
+                <version>1.3.0</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/webapp/themes/${theme}</sourceDirectory>
+                    <outputDirectory>${basedir}/target/css/${theme}</outputDirectory>
+                    <lessJs>${project.parent.basedir}/src/main/resources/lesscss/less-1.3.1.min.js</lessJs>
+                    <force>true</force>
+                    <includes>
+                        <include>main.less</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

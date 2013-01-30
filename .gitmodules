@@ -4,3 +4,6 @@
 [submodule "client/src/main/webapp/themes/metro/Metro-UI-CSS"]
 	path = client/src/main/webapp/themes/metro/Metro-UI-CSS
 	url = git://github.com/olton/Metro-UI-CSS.git
+[submodule "src/main/resources/mustache.js"]
+	path = src/main/resources/mustache.js
+	url = git://github.com/janl/mustache.js.git

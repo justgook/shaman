@@ -11,7 +11,7 @@
     <name>Shaman</name>
 
     <properties>
-        <jettyVersion>9.0.0.M4</jettyVersion>
+        <jettyVersion>9.0.0.M5</jettyVersion>
     </properties>
 
     <modules>
@@ -40,9 +40,8 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.2</version>
                     <configuration>
-
-                      <!--<port>9000</port>-->
-                      <tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory>
+                        <!--<port>9000</port>-->
+                        <tempWebappDirectory>${basedir}/target/site/temp</tempWebappDirectory>
                     </configuration>
                 </plugin>
                 <!-- http://whatiscomingtomyhead.wordpress.com/2011/06/05/maven-3-site-plugin-how-to/ -->

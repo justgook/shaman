@@ -1,15 +1,39 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>Archetype Created Web Application</display-name>
+    <!--<filter>-->
+    <!--<filter-name>TemplateEngineFilter</filter-name>-->
+    <!--<filter-class>org.fusesource.scalate.servlet.TemplateEngineFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>TemplateEngineFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
     <filter>
-        <filter-name>TemplateEngineFilter</filter-name>
-        <filter-class>org.fusesource.scalate.servlet.TemplateEngineFilter</filter-class>
+        <filter-name>jade4jFilter</filter-name>
+        <filter-class>lv.z0.shaman.client.servlet.Jade4jFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>TemplateEngineFilter</filter-name>
+        <filter-name>jade4jFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!--<filter>-->
+    <!--<filter-name>LoginFilter</filter-name>-->
+    <!--<filter-class>LoginFilter</filter-class>-->
+    <!--<description>Performs pre-login and post-login operation</description>-->
+    <!--<init-param>-->
+    <!--<param-name>RevokedUsers</param-name>-->
+    <!--<param-value>c:\WebSphere\AppServer\installedApps\revokedUsers.lst</param-value>-->
+    <!--</init-param>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+    <!--<filter-name>LoginFilter</filter-name>-->
+    <!--<url-pattern>/j_security_check</url-pattern>-->
+    <!--</filter-mapping>-->
 </web-app>
