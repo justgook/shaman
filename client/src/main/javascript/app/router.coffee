@@ -19,7 +19,7 @@ define [
       "": "index"
       "test": "index_test"
     index: () ->
-      view = new Budget.Views.List {el: "#main"}
+      view = new Budget.Views.List {el: "#main", collection: Library}
       view.render()
     index_test: () ->
       #        console.log Library

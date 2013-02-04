@@ -9,31 +9,33 @@ define [
   Budget.Collection = Backbone.Collection.extend({
   model: Budget.Model
   });
+
   class Budget.Views.Income extends Backbone.View
     template: "budget/income"
     el: "<div></div>"
-    render: () =>
-      template = arguments[0]
-      @$el.innerHTML = template()
+    serialize: () =>
+      alert "uraaa"
 
 
   class Budget.Views.List extends Backbone.View
     template: "budget/index"
-    render: () =>
-      #        item.render()
-      #        console.log item.template
-      template = arguments[0]
-      testData =
-        "beatles": [
-          { "firstName": "John", "lastName": "Lennon" },
-          { "firstName": "Paul", "lastName": "McCartney" },
-          { "firstName": "George", "lastName": "Harrison" },
-          { "firstName": "Ringo", "lastName": "Starr" }
-        ],
-        "name": () ->
-          this.firstName + " " + this.lastName
-        "test": false
-      console.log testData.name
-      @el.innerHTML = template(testData)
+    collection: new Budget.Collection
+    addView: (model, render) =>
+      # Insert a nested View into this View.
+      view = @insertView new Budget.Views.Income({ model: model })
+      alert "addView"
+      # Only trigger render if it not inserted inside `beforeRender`.
+      view.render() if (render != false)
 
+    beforeRender: () ->
+      alert "before render"
+    #      @collection.each (model) ->
+    #        this.addView({ model: model }, false)
+    #       this)
+
+    initialize: () =>
+      @listenTo(@collection, "add", @addView);
+
+    serialize: () =>
+      alert "serialize BudgedViewList"
   Budget
