@@ -1,4 +1,9 @@
-tr
-    td a
-    td b
-    td c
+td {{type}}
+    | {{#drawRow}}
+    | {{#thisCol}}
+td    {{balance}}
+    | {{/thisCol}}
+    | {{^thisCol}}
+td    empty
+    | {{/thisCol}}
+    | {{/drawRow}}

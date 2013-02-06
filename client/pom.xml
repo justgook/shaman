@@ -81,6 +81,11 @@
                             </resourceBase>
                         </contextHandler>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/vendor/jquery</contextPath>
+                            <resourceBase>${project.parent.basedir}/src/main/resources/jquery
+                            </resourceBase>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <contextPath>/js/lib</contextPath>
                             <resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>
                         </contextHandler>

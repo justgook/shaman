@@ -12,8 +12,8 @@ jam =
     },
     {
     name: "jquery"
-    location: "../../vendor/jam/jquery"
-    main: "jquery.js"
+    location: "../../vendor/jquery"
+    main: "jquery.1.9.0.js"
     },
     {
     name: "lodash"

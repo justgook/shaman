@@ -2,16 +2,12 @@ table
     thead(align="center")
         tr
             th Type
-            th Mon
-            th Thu
-            th Wen
-            th Thr
-            th Fri
-            th Sut
-            th Sun
+            | {{#week}}
+            th {{curentDay}}
+            | {{/week}}
     tfoot
         tr
-            td TODO find why dont work without "<%"
+            td
             td
             td
             td
