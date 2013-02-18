@@ -1,0 +1,28 @@
+define ["modules/date"], (ShamanDate)->
+  alert ""
+  describe 'Date', ->
+    it 'can create current date', ->
+      date = new ShamanDate()
+  #    result = date
+      expect(1).toBe 1
+
+
+#  it 'can add two positive numbers', ->
+#    calculator = new Calculator()
+#    result = calculator.add 2, 3
+#    expect(result).toBe 5
+#
+#  it 'can handle negative number addition', ->
+#    calculator = new Calculator()
+#    result = calculator.add -10, 5
+#    expect(result).toBe -5
+#
+#  it 'can subtract two positive numbers', ->
+#    calculator = new Calculator()
+#    result = calculator.subtract 10, 6
+#    expect(result).toBe 4
+#
+#  it 'can handle negative number subtraction', ->
+#    calculator = new Calculator()
+#    result = calculator.subtract 4, -6
+#    expect(result).toBe 10

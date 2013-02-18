@@ -1,10 +1,9 @@
 define [
   # Application.
   "app"
-  "modules/book"
   "modules/budget"
 ],
-(app, Book, Budget) ->
+(app, Budget) ->
   #tempery data for test collection!
   TestCollection = new Budget.Collection ([
     {date: new Date(2013, 2, 5).getTime(), balance: 10},

@@ -9,6 +9,6 @@
 </head>
 <body>
 <div id="main"></div>
-<script data-main="/js/app/config" src="vendor/jam/require.js"></script>
+<script data-main="/javascript/app/main" src="javascript/vendor/require.js"></script>
 </body>
 </html>

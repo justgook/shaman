@@ -2,11 +2,11 @@
 define [
   "mustache"
   "backbone.layoutmanager"
-  # Include additional libraries installed with JamJS or placed in the
-  # `vendor/js` directory, here.
 ],
+(Mustache, Backbone) ->
+#  console.log(LayoutManager)
+#  Backbone.LayoutManager = LayoutManager
 
-(Mustache) ->
   # Provide a global location to place configuration settings and module
   # creation.
   app =
@@ -17,7 +17,7 @@ define [
   JST = window.JST || {};
 
   # Configure LayoutManager with Backbone Boilerplate defaults.
-  Backbone.LayoutManager.configure
+  Backbone.Layout.configure
   # Allow LayoutManager to augment Backbone.View.prototype.
     manage: true
     el: true
@@ -44,23 +44,4 @@ define [
     module: (additionalProps) ->
       _.extend({ Views:
         {} }, additionalProps)
-    #
-    #
-    #    # Helper for using layouts.
-    #    useLayout: (name, options) ->
-    #      # Enable variable arity by allowing the first argument to be the options
-    #      # object and omitting the name argument.
-    #      options = if _.isObject(name) then name else {}
-    #
-    #      # If a name property was specified use that as the template.
-    #      options.template = name if _.isString(name)
-    #
-    #      # Check if a layout already exists, if so, update the template.
-    #      if @layout
-    #        @layout.template = options.template
-    #      else
-    #        # Create a new Layout with options.
-    #        @layout = new Backbone.Layout _.extend({el: "#main"}, options)
-    #      # Cache the refererence.
-    #      @layout
   , Backbone.Events

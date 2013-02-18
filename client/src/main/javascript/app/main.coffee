@@ -1,10 +1,42 @@
-require [
-    # Application.
-    "app",
-    # Main Router.
-    "router"
-  ],
-  (app, Router) ->
+#require
+#  # Initialize the application with the main application file
+#  deps: ["require.config", "main"]
+require.config
+  baseUrl: "/javascript"
+  paths: {
+    app: "app/app"
+    router:"app/router"
+    modules:"app/modules"
+    noext : "vendor/requirejs-plugins/noext" #alias to plugin
+    jquery: "vendor/jquery.1.9.0"
+    backbone: "vendor/backbone"
+    underscore: "vendor/lodash.underscore"
+    'backbone.layoutmanager': "vendor/backbone.layoutmanager"
+    'backbone-associations': "vendor/backbone-associations"
+    mustache: "vendor/mustache.js/mustache"
+  },
+  shim: {
+    backbone: {
+      deps: ["jquery", "underscore"],
+      exports: "Backbone"
+    },
+    # Here we indicate that we need Backbone and all its dependencies,
+    # we also want to bind the main object.
+#    "backbone.layoutmanager": ["backbone"]
+    'backbone.layoutmanager': {
+      deps: ["backbone"],
+      exports: "Backbone"
+    },
+    'backbone-associations': {
+      deps: ["backbone"],
+      exports: "Backbone"
+    }
+
+  }
+
+
+require ["app","router","core/user"],
+  (app, Router,User) ->
     # Define your master router on the application namespace and trigger all
     # navigation from this instance.
     app.router = new Router
