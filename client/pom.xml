@@ -75,28 +75,32 @@
                     </systemProperties>
                     <contextHandlers>
                         <!--special path for backbone-boilerplate vendor path-->
+                        <!--<contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">-->
+                        <!--<contextPath>/vendor</contextPath>-->
+                        <!--<resourceBase>${project.parent.basedir}/src/main/resources/backbone-boilerplate/vendor-->
+                        <!--</resourceBase>-->
+                        <!--</contextHandler>-->
+                        <!--<contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">-->
+                        <!--<contextPath>/vendor/jquery</contextPath>-->
+                        <!--<resourceBase>${project.parent.basedir}/src/main/resources/jquery-->
+                        <!--</resourceBase>-->
+                        <!--</contextHandler>-->
+                        <!--<contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">-->
+                        <!--<contextPath>/js/lib</contextPath>-->
+                        <!--<resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>-->
+                        <!--</contextHandler>-->
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/vendor</contextPath>
-                            <resourceBase>${project.parent.basedir}/src/main/resources/backbone-boilerplate/vendor
-                            </resourceBase>
-                        </contextHandler>
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/vendor/jquery</contextPath>
-                            <resourceBase>${project.parent.basedir}/src/main/resources/jquery
-                            </resourceBase>
-                        </contextHandler>
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/js/lib</contextPath>
-                            <resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>
-                        </contextHandler>
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/js</contextPath>
+                            <contextPath>/javascript</contextPath>
                             <resourceBase>${basedir}/target/javascript</resourceBase>
                         </contextHandler>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/vendor/mustache</contextPath>
-                            <resourceBase>${project.parent.basedir}/src/main/resources/mustache.js</resourceBase>
+                            <contextPath>/javascript/vendor</contextPath>
+                            <resourceBase>${basedir}/src/main/javascript/vendor</resourceBase>
                         </contextHandler>
+                        <!--<contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">-->
+                        <!--<contextPath>/vendor/mustache</contextPath>-->
+                        <!--<resourceBase>${project.parent.basedir}/src/main/resources/mustache.js</resourceBase>-->
+                        <!--</contextHandler>-->
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <contextPath>/${theme}/css</contextPath>
                             <resourceBase>${basedir}/target/css/${theme}</resourceBase>
@@ -129,6 +133,35 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- ====================================================================== -->
+            <!-- Maven plugin for the JavaScript testing framework, Jasmine.            -->
+            <!-- http://searls.github.com/jasmine-maven-plugin/                         -->
+            <!-- ====================================================================== -->
+            <plugin>
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+                <version>1.2.0.0</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jsSrcDir>${basedir}/src/main/javascript</jsSrcDir>
+                    <preloadSources>
+                        <source>vendor/require.js</source>
+                    </preloadSources>
+                    <sourceIncludes>
+                        <include>app/require.config.coffee</include>
+                    </sourceIncludes>
+                    <specIncludes>
+                        <include>config.coffee</include>
+                    </specIncludes>
+                </configuration>
             </plugin>
             <!-- ====================================================================== -->
             <!-- LESSCSS Compiler                                                       -->

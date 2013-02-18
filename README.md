@@ -1,6 +1,9 @@
 CORE - FRONTEND
 ===============
 
+###Date Helper
+ A 5kb javascript date library for parsing, validating, manipulating, and formatting dates - http://momentjs.com/
+
 ###TODO create combination of LESSCSS + java to generate icon sets based on some mixins - and return sprite (or base64 builded class list) of icons, with only necessary icons
 https://github.com/nzakas/cssembed - A tool for embedding data URIs in CSS file
 
