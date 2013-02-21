@@ -23,13 +23,12 @@
     var _, Backbone, BackboneModel, BackboneCollection, ModelProto,
         defaultEvents, AssociatedModel, pathChecker;
     if (typeof require !== 'undefined') {
-        _ = require('underscore');
-        Backbone = require('backbone');
-        exports = module.exports = Backbone;
-    } else {
-        _ = root._;
-        Backbone = root.Backbone;
+        define(function (require, exports, module) {
+            exports = module.exports = Backbone;
+        });
     }
+    _ = root._;
+    Backbone = root.Backbone;
     // Create local reference `Model` prototype.
     BackboneModel = Backbone.Model;
     BackboneCollection = Backbone.Collection;
@@ -49,19 +48,19 @@
     // Define `AssociatedModel` (Extends Backbone.Model).
     AssociatedModel = Backbone.AssociatedModel = BackboneModel.extend({
         // Define relations with Associated Model.
-        relations:undefined,
+        relations: undefined,
         // Define `Model` property which can keep track of already fired `events`,
         // and prevent redundant event to be triggered in case of cyclic model graphs.
-        _proxyCalls:undefined,
+        _proxyCalls: undefined,
 
         // Get the value of an attribute.
-        get:function (attr) {
+        get: function (attr) {
             var obj = ModelProto.get.call(this, attr);
             return obj ? obj : this.getAttr.apply(this, arguments);
         },
 
         // Set a hash of model attributes on the Backbone Model.
-        set:function (key, value, options) {
+        set: function (key, value, options) {
             var attributes, attr, modelMap, modelId, obj, result = this;
             // Duplicate backbone's behavior to allow separate key/value parameters,
             // instead of a single 'attributes' object.
@@ -80,11 +79,11 @@
                     var pathTokens = getPathArray(attr), initials = _.initial(pathTokens), last = pathTokens[pathTokens.length - 1],
                         parentModel = this.get(initials);
                     if (parentModel instanceof AssociatedModel) {
-                        obj = modelMap[parentModel.cid] || (modelMap[parentModel.cid] = {'model':parentModel, 'data':{}});
+                        obj = modelMap[parentModel.cid] || (modelMap[parentModel.cid] = {'model': parentModel, 'data': {}});
                         obj.data[last] = attributes[attr];
                     }
                 } else {
-                    obj = modelMap[this.cid] || (modelMap[this.cid] = {'model':this, 'data':{}});
+                    obj = modelMap[this.cid] || (modelMap[this.cid] = {'model': this, 'data': {}});
                     obj.data[attr] = attributes[attr];
                 }
             }
@@ -103,7 +102,7 @@
         // fire Backbone `event` with options.
         // It maintains relations between models during the set operation.
         // It also bubbles up child events to the parent.
-        setAttr:function (attributes, options) {
+        setAttr: function (attributes, options) {
             var attr;
             // Extract attributes and options.
             options || (options = {});
@@ -169,7 +168,7 @@
             return ModelProto.set.call(this, attributes, options);
         },
         // Bubble-up event to `parent` Model
-        _bubbleEvent:function (relationKey, relationValue, eventArguments) {
+        _bubbleEvent: function (relationKey, relationValue, eventArguments) {
             var args = eventArguments,
                 opt = args[0].split(":"),
                 eventType = opt[0],
@@ -215,7 +214,6 @@
             // Add `eventPath` in `_proxyCalls` to keep track of already triggered `event`.
             _proxyCalls[eventPath] = true;
 
-
             //Set up previous attributes correctly. Backbone v0.9.10 upwards...
             if ("change" === eventType) {
                 this._previousAttributes[relationKey] = relationValue._previousAttributes;
@@ -234,7 +232,7 @@
             return this;
         },
         // Returns New `collection` of type `relation.relatedModel`.
-        _createCollection:function (type) {
+        _createCollection: function (type) {
             var collection, relatedModel = type;
             _.isString(relatedModel) && (relatedModel = eval(relatedModel));
             // Creates new `Backbone.Collection` and defines model class.
@@ -247,7 +245,7 @@
             return collection;
         },
         // The JSON representation of the model.
-        toJSON:function (options) {
+        toJSON: function (options) {
             var json, aJson;
             if (!this.visited) {
                 this.visited = true;
@@ -270,12 +268,12 @@
         },
 
         // Create a new model with identical attributes to this one.
-        clone:function () {
+        clone: function () {
             return new this.constructor(this.toJSON());
         },
 
         //Navigate the path to the leaf object in the path to query for the attribute value
-        getAttr:function (path) {
+        getAttr: function (path) {
 
             var result = this,
             //Tokenize the path

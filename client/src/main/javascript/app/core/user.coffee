@@ -1,18 +1,32 @@
 define [
-  "app"
-  "backbone-associations"
-],
-(app, Backbone) ->
-  User = app.module()
-  User.Model = Backbone.extend({
-    defaults:
-      name:""
-      surname:""
-      skype:""
-      role:null
-                               })
-  User.Role = app.module();
-  User
+         "app"
+         "backbone-associations"
+       ],
+       (app, Backbone) ->
+         User = app.module()
+
+
+         Role = Backbone.AssociatedModel.extend
+           defaults:
+             name: ""
+             pormission: []
+
+
+         User.Model = Backbone.AssociatedModel.extend
+           relations: [
+             {
+             type: Backbone.Many
+             key: 'role'
+             relatedModel: Role
+             }
+           ],
+           defaults:
+             name: ""
+             surname: ""
+             skype: ""
+             role: null
+         #  User.Role = app.module();
+         User
 #
 #  Budget = app.module()
 #  Budget.Model = Backbone.Model.extend({

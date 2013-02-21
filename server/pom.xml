@@ -1,122 +1,159 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-      <groupId>z0.shaman</groupId>
-      <artifactId>parent</artifactId>
-      <version>1.0-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>z0.shaman</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>server</artifactId>
-  <packaging>war</packaging>
-  <name>Shaman Server</name>
-  <url>http://maven.apache.org</url>
+    <artifactId>server</artifactId>
+    <packaging>war</packaging>
+    <name>Shaman Server</name>
+    <url>http://maven.apache.org</url>
 
-<properties>
+    <properties>
         <serverDir>${basedir}</serverDir>
-</properties>
+    </properties>
+    <repositories>
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-      <!--http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.eclipse.jetty.websocket%22-->
-      <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>servlet-api</artifactId>
-          <version>2.5</version>
-          <scope>compile</scope>
-      </dependency>
+    <dependencies>
+        <!--JAX-RS-->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.wink</groupId>
+            <artifactId>wink-server</artifactId>
+            <version>1.2.0-incubating</version>
+        </dependency>
 
-      <dependency>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-server</artifactId>
-          <version>${jettyVersion}</version>
-      </dependency>
-
-    <!--<dependency>-->
-      <!--<groupId>org.eclipse.jetty.websocket</groupId>-->
-      <!--<artifactId>websocket-core</artifactId>-->
-      <!--<version>${jettyVersion}</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.eclipse.jetty.websocket</groupId>-->
-      <!--<artifactId>websocket-servlet</artifactId>-->
-      <!--<version>${jettyVersion}</version>-->
-    <!--</dependency>-->
-      <dependency>
-          <groupId>org.eclipse.jetty.websocket</groupId>
-          <artifactId>websocket-server</artifactId>
-          <version>${jettyVersion}</version>
-      </dependency>
-      <dependency>
-          <groupId>org.eclipse.jetty.websocket</groupId>
-          <artifactId>websocket-servlet</artifactId>
-          <version>${jettyVersion}</version>
-      </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty.websocket</groupId>
-      <artifactId>websocket-api</artifactId>
-      <version>${jettyVersion}</version>
-    </dependency>
-      <!--DELETE ME AFTER TEST-->
-    <dependency>
-      <groupId>org.eclipse.jetty.websocket</groupId>
-      <artifactId>websocket-client</artifactId>
-      <version>${jettyVersion}</version>
-    </dependency>
+        <!--Hibernate-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>ejb3-persistence</artifactId>
+            <version>1.0.1.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.6-Final</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.10</version>
+        </dependency>
 
 
-  </dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!--http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.eclipse.jetty.websocket%22-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>compile</scope>
+        </dependency>
 
-  <build>
-    <finalName>server</finalName>
-    <plugins>
-        <plugin>
+        <dependency>
             <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
+            <artifactId>jetty-server</artifactId>
             <version>${jettyVersion}</version>
-            <configuration>
-                <contextHandlers>
-                    <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                        <contextPath>/js/lib</contextPath>
-                        <resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>
-                    </contextHandler>
-                    <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                        <contextPath>/js</contextPath>
-                        <resourceBase>${basedir}/target/javascript</resourceBase>
-                    </contextHandler>
-                </contextHandlers>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>com.github.iron9light</groupId>
-            <artifactId>coffeescript-maven-plugin</artifactId>
-            <version>1.1.2</version>
-            <configuration>
-                <srcDir>${basedir}/src/main/javascript</srcDir>
-                <outputDir>${basedir}/target/javascript</outputDir>
-                <bare>false</bare>
-                <modifiedOnly>false</modifiedOnly>
-                <allowedDelete>true</allowedDelete>
-                <compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>
-            </configuration>
-            <executions>
-                <execution>
-                    <id>coffeescript</id>
-                    <phase>generate-resources</phase>
-                    <goals>
-                        <goal>compile</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-  </build>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.eclipse.jetty.websocket</groupId>-->
+        <!--<artifactId>websocket-core</artifactId>-->
+        <!--<version>${jettyVersion}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.eclipse.jetty.websocket</groupId>-->
+        <!--<artifactId>websocket-servlet</artifactId>-->
+        <!--<version>${jettyVersion}</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-server</artifactId>
+            <version>${jettyVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-servlet</artifactId>
+            <version>${jettyVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-api</artifactId>
+            <version>${jettyVersion}</version>
+        </dependency>
+        <!--DELETE ME AFTER TEST-->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>${jettyVersion}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>server</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jettyVersion}</version>
+                <configuration>
+                    <contextHandlers>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/js/lib</contextPath>
+                            <resourceBase>${project.parent.basedir}/src/main/javascript/libraries</resourceBase>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <contextPath>/js</contextPath>
+                            <resourceBase>${basedir}/target/javascript</resourceBase>
+                        </contextHandler>
+                    </contextHandlers>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.iron9light</groupId>
+                <artifactId>coffeescript-maven-plugin</artifactId>
+                <version>1.1.2</version>
+                <configuration>
+                    <srcDir>${basedir}/src/main/javascript</srcDir>
+                    <outputDir>${basedir}/target/javascript</outputDir>
+                    <bare>false</bare>
+                    <modifiedOnly>false</modifiedOnly>
+                    <allowedDelete>true</allowedDelete>
+                    <compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>coffeescript</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

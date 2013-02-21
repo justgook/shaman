@@ -1,11 +1,11 @@
 define [
          "app"
          "backbone"
-         "modules/date"
+#         "modules/date"
        ],
-       (app, Backbone, DateHelper) ->
-         pupertest = new DateHelper()
-         pupertest.week().next()
+       (app, Backbone) ->
+#         pupertest = new DateHelper()
+#         pupertest.week().next()
          #http://blog.stevenlevithan.com/archives/date-time-format
          dateFormat = {
          dayNames: [
