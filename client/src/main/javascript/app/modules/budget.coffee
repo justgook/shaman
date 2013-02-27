@@ -29,7 +29,7 @@ define [
                                                 date: 0
                                               #    new Date(unix_timestamp*1000);
                                               });
-         # Book Collection
+         # Budget Collection
          Budget.Collection = Backbone.Collection.extend({
                                                         model: Budget.Model
                                                         });

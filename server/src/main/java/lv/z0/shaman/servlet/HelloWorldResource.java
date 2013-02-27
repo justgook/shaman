@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 @Path("/helloworld")
 public class HelloWorldResource {
     //http://habrahabr.ru/qa/16035/
-//       Посоветуйте JSON библиотеку под Java есть решение
+    //Посоветуйте JSON библиотеку под Java есть решение
 
     @GET
     public String getMessage() {

@@ -1,3 +1,7 @@
+LICENCE
+=======
+http://creativecommons.org/
+
 CORE - FRONTEND
 ===============
 

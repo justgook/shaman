@@ -20,13 +20,13 @@
         <servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>lv.z0.shaman.servlet.HelloWorldApplication</param-value>
+            <param-value>lv.z0.shaman.servlet.REST</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorldApp</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

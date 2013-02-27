@@ -37,75 +37,48 @@
             <artifactId>wink-server</artifactId>
             <version>1.2.0-incubating</version>
         </dependency>
+        <!--TODO TESST NOSQL DATABASE-->
+    <!--<dependencies>-->
+        <!--<dependency>-->
+            <!--<groupId>org.neo4j</groupId>-->
+            <!--<artifactId>neo4j</artifactId>-->
+            <!--<version>1.8.1</version>-->
+        <!--</dependency>-->
 
         <!--Hibernate-->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>ejb3-persistence</artifactId>
-            <version>1.0.1.GA</version>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.1.9.Final</version>
         </dependency>
+
+        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-simple backend -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.5.6-Final</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.1</version>
         </dependency>
+
+        <!-- The tutorials use JUnit test cases to illustrate usage -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.10</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
+
+        <!-- The tutorials use the H2 in-memory database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.2.145</version>
         </dependency>
 
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>4.10</version>
             <scope>test</scope>
-        </dependency>
-        <!--http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.eclipse.jetty.websocket%22-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-            <version>${jettyVersion}</version>
-        </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.eclipse.jetty.websocket</groupId>-->
-        <!--<artifactId>websocket-core</artifactId>-->
-        <!--<version>${jettyVersion}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.eclipse.jetty.websocket</groupId>-->
-        <!--<artifactId>websocket-servlet</artifactId>-->
-        <!--<version>${jettyVersion}</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-server</artifactId>
-            <version>${jettyVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-servlet</artifactId>
-            <version>${jettyVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-api</artifactId>
-            <version>${jettyVersion}</version>
-        </dependency>
-        <!--DELETE ME AFTER TEST-->
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-client</artifactId>
-            <version>${jettyVersion}</version>
         </dependency>
 
 
@@ -113,6 +86,23 @@
 
     <build>
         <finalName>server</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -131,28 +121,28 @@
                     </contextHandlers>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.github.iron9light</groupId>
-                <artifactId>coffeescript-maven-plugin</artifactId>
-                <version>1.1.2</version>
-                <configuration>
-                    <srcDir>${basedir}/src/main/javascript</srcDir>
-                    <outputDir>${basedir}/target/javascript</outputDir>
-                    <bare>false</bare>
-                    <modifiedOnly>false</modifiedOnly>
-                    <allowedDelete>true</allowedDelete>
-                    <compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>coffeescript</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.github.iron9light</groupId>-->
+                <!--<artifactId>coffeescript-maven-plugin</artifactId>-->
+                <!--<version>1.1.2</version>-->
+                <!--<configuration>-->
+                    <!--<srcDir>${basedir}/src/main/javascript</srcDir>-->
+                    <!--<outputDir>${basedir}/target/javascript</outputDir>-->
+                    <!--<bare>false</bare>-->
+                    <!--<modifiedOnly>false</modifiedOnly>-->
+                    <!--<allowedDelete>true</allowedDelete>-->
+                    <!--<compilerUrl>${project.parent.basedir}/src/main/javascript/libraries/coffee-script.js</compilerUrl>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>coffeescript</id>-->
+                        <!--<phase>generate-resources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>compile</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
